@@ -1,4 +1,4 @@
-package com.tofdragon.todolist.cli.command;
+package com.tofdragon.todolist.cli.command.todo;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,7 +17,7 @@ import com.todfragon.todolist.todo.service.TodoListService;
  *
  * @author sunjing
  */
-public abstract class AbstractCommandTest {
+public abstract class AbstractTodoCommandTest {
 
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();

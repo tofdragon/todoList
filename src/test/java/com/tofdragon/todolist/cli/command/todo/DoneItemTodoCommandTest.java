@@ -1,4 +1,4 @@
-package com.tofdragon.todolist.cli.command;
+package com.tofdragon.todolist.cli.command.todo;
 
 import org.hamcrest.core.Is;
 import org.junit.Before;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
  *
  * @author sunjing
  */
-public class DoneItemCommandTest extends AbstractCommandTest {
+public class DoneItemTodoCommandTest extends AbstractTodoCommandTest {
 
     private final Session session = new Session();
 

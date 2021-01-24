@@ -1,4 +1,4 @@
-package com.tofdragon.todolist.cli.command;
+package com.tofdragon.todolist.cli.command.user;
 
 import org.hamcrest.core.Is;
 import org.junit.After;

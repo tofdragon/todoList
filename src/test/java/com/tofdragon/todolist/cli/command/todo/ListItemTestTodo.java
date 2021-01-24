@@ -1,4 +1,4 @@
-package com.tofdragon.todolist.cli.command;
+package com.tofdragon.todolist.cli.command.todo;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
  *
  * @author sunjing
  */
-public class ListItemTest extends AbstractCommandTest {
+public class ListItemTestTodo extends AbstractTodoCommandTest {
 
     @Test
     public void should_list_args() {
