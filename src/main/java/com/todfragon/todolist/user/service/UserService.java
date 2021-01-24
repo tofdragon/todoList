@@ -18,12 +18,9 @@ public final class UserService {
         this.userRepository = userRepository;
     }
 
-    public Boolean isMatchUserNameAndPassword(String name, String password) {
+    public Boolean isLoginSuccess(final String name, final String password) {
         Optional<User> user = userRepository.findByName(name);
-        if (!user.isPresent()) {
-            return false;
-        }
-        return user.get().isMatchUserNameAndPassword(name, password);
+        return user.map(value -> value.isMatchUserNameAndPassword(name, password)).orElse(false);
     }
 
 }

@@ -15,9 +15,9 @@ import static org.junit.Assert.assertThat;
 public class UserServiceTest {
 
     @Test
-    public void should_is_same_user_name_and_password() {
+    public void should_is_login_success() {
         UserService userService = new UserService(new UserFileRepository());
-        assertThat(userService.isMatchUserNameAndPassword("user1", "123456"), Is.is(true));
-        assertThat(userService.isMatchUserNameAndPassword("user1", "123457"), Is.is(false));
+        assertThat(userService.isLoginSuccess("user1", "123456"), Is.is(true));
+        assertThat(userService.isLoginSuccess("user1", "123457"), Is.is(false));
     }
 }

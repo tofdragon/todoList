@@ -33,7 +33,7 @@ public final class LoginCommand extends AbstractCommand {
 
         String password = commandContext.getInput().nextLine();
 
-        if (userService.isMatchUserNameAndPassword(loginArgs.userName(), password)) {
+        if (userService.isLoginSuccess(loginArgs.userName(), password)) {
             commandContext.getSession().loginIn(loginArgs.userName());
             commandContext.getOutput().infoLn("Login success!");
             return;
