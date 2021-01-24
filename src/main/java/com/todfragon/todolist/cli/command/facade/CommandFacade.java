@@ -20,7 +20,7 @@ public final class CommandFacade {
 
     public CommandFacade() {
         this.session = new Session();
-        this.commands = CommandFactory.create(session);
+        this.commands = CommandFactory.create();
     }
 
     public void handle(final String userInput, final Input input, final Output output) {

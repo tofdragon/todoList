@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 import com.todfragon.todolist.cli.Session;
 import com.todfragon.todolist.cli.command.Command;
+import com.todfragon.todolist.cli.command.security.NeedLoginCommand;
 import com.todfragon.todolist.cli.command.todo.add.AddItemCommand;
 import com.todfragon.todolist.cli.command.todo.done.DoneItemCommand;
 import com.todfragon.todolist.cli.command.todo.list.ListItemCommand;
@@ -22,12 +23,17 @@ import com.todfragon.todolist.user.service.UserService;
  */
 final class CommandFactory {
 
-    static List<Command> create(Session session) {
+    static List<Command> create() {
         TodoListService todoListService = new TodoListService(new TodoListFileRepository());
         UserService userService = new UserService(new UserFileRepository());
 
-        return ImmutableList.of(new AddItemCommand(todoListService),
-                new DoneItemCommand(todoListService), new ListItemCommand(todoListService),
+        return ImmutableList.of(needLogin(new AddItemCommand(todoListService)),
+                needLogin(new DoneItemCommand(todoListService)),
+                needLogin(new ListItemCommand(todoListService)),
                 new LoginCommand(userService), new LogoutCommand());
+    }
+
+    private static Command needLogin(Command command) {
+        return new NeedLoginCommand(command);
     }
 }
