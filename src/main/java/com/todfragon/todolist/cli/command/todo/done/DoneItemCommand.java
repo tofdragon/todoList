@@ -3,7 +3,7 @@ package com.todfragon.todolist.cli.command.todo.done;
 import com.todfragon.todolist.cli.command.AbstractCommand;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.todo.done.domain.DoneItemArgs;
-import com.todfragon.todolist.service.TodoListService;
+import com.todfragon.todolist.todo.service.TodoListService;
 
 /**
  * 完成待办命令

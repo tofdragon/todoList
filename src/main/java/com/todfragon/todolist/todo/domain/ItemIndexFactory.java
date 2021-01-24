@@ -1,4 +1,4 @@
-package com.todfragon.todolist.domain;
+package com.todfragon.todolist.todo.domain;
 
 /**
  * 待办项索引创建者

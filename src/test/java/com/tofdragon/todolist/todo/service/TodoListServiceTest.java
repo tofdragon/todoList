@@ -1,4 +1,4 @@
-package com.tofdragon.todolist.service;
+package com.tofdragon.todolist.todo.service;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import org.hamcrest.core.Is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import com.todfragon.todolist.domain.Item;
-import com.todfragon.todolist.repository.TodoListRepository;
-import com.todfragon.todolist.repository.local.TodoListFileRepository;
-import com.todfragon.todolist.service.TodoListService;
+import com.todfragon.todolist.todo.domain.Item;
+import com.todfragon.todolist.todo.repository.TodoListRepository;
+import com.todfragon.todolist.todo.repository.local.TodoListFileRepository;
+import com.todfragon.todolist.todo.service.TodoListService;
 
 import static org.junit.Assert.assertThat;
 

@@ -1,4 +1,4 @@
-package com.tofdragon.todolist.repository;
+package com.tofdragon.todolist.user.repository;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;

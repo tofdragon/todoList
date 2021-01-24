@@ -1,11 +1,11 @@
-package com.todfragon.todolist.service;
+package com.todfragon.todolist.todo.service;
 
 import java.util.Collections;
 import java.util.List;
 
-import com.todfragon.todolist.domain.Item;
-import com.todfragon.todolist.domain.ItemIndexFactory;
-import com.todfragon.todolist.repository.TodoListRepository;
+import com.todfragon.todolist.todo.domain.Item;
+import com.todfragon.todolist.todo.domain.ItemIndexFactory;
+import com.todfragon.todolist.todo.repository.TodoListRepository;
 
 /**
  * 待办服务

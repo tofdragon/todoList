@@ -1,4 +1,4 @@
-package com.todfragon.todolist.domain;
+package com.todfragon.todolist.todo.domain;
 
 /**
  * 状态

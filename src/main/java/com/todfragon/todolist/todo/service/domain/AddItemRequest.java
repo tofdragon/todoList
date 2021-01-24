@@ -1,4 +1,4 @@
-package com.todfragon.todolist.service.domain;
+package com.todfragon.todolist.todo.service.domain;
 
 import lombok.Getter;
 

@@ -3,8 +3,8 @@ package com.todfragon.todolist.cli.command.todo.add;
 import com.todfragon.todolist.cli.command.AbstractCommand;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.todo.add.domain.AddItemArgs;
-import com.todfragon.todolist.domain.Item;
-import com.todfragon.todolist.service.TodoListService;
+import com.todfragon.todolist.todo.domain.Item;
+import com.todfragon.todolist.todo.service.TodoListService;
 
 /**
  * 增加待办项命令

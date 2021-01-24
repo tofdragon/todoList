@@ -1,7 +1,7 @@
-package com.todfragon.todolist.repository.local;
+package com.todfragon.todolist.todo.repository.local;
 
-import com.todfragon.todolist.domain.Item;
-import com.todfragon.todolist.domain.ItemStatus;
+import com.todfragon.todolist.todo.domain.Item;
+import com.todfragon.todolist.todo.domain.ItemStatus;
 
 import lombok.Getter;
 import lombok.Setter;

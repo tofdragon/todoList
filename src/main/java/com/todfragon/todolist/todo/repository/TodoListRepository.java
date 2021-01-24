@@ -1,8 +1,8 @@
-package com.todfragon.todolist.repository;
+package com.todfragon.todolist.todo.repository;
 
 import java.util.List;
 
-import com.todfragon.todolist.domain.Item;
+import com.todfragon.todolist.todo.domain.Item;
 
 /**
  * @author sunjing

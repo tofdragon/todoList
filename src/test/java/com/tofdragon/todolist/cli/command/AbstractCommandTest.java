@@ -9,8 +9,8 @@ import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.args.Args;
 import com.todfragon.todolist.cli.command.facade.ConsoleInput;
 import com.todfragon.todolist.cli.command.facade.ConsoleOutput;
-import com.todfragon.todolist.repository.local.TodoListFileRepository;
-import com.todfragon.todolist.service.TodoListService;
+import com.todfragon.todolist.todo.repository.local.TodoListFileRepository;
+import com.todfragon.todolist.todo.service.TodoListService;
 
 /**
  * 抽象的命令测试
