@@ -28,7 +28,7 @@ public final class TodoListFileRepository implements TodoListRepository {
 
     @Override
     public Optional<Item> findItemBy(String userName, int index) {
-        return allItems(userName).filter(item -> item.indexEqualsOf(index)).findAny();
+        return allItems(userName).filter(item -> item.isEqualToIndex(index)).findAny();
     }
 
     private Stream<Item> allItems(String userName) {

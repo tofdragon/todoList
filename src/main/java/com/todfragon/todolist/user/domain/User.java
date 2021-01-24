@@ -1,17 +1,16 @@
 package com.todfragon.todolist.user.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author sunjing
  */
-@Getter
-@Setter
 public final class User {
 
+    @JsonProperty
     private String name;
 
+    @JsonProperty
     private String password;
 
     public static User create(String name, String password) {
@@ -21,11 +20,11 @@ public final class User {
         return user;
     }
 
-    public Boolean isMatchUserNameAndPassword(String name, String password) {
+    public Boolean isEqualToNameAndPassword(String name, String password) {
         return this.name.equals(name) && this.password.equals(password);
     }
 
-    public Boolean isEqualsName(String name) {
+    public Boolean isEqualToName(String name) {
         return this.name.equals(name);
     }
 }

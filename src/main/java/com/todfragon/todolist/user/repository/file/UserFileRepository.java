@@ -21,6 +21,6 @@ public class UserFileRepository implements UserRepository {
 
     @Override
     public Optional<User> findByName(String name) {
-        return this.userFileStorage.read().stream().filter(user -> user.isEqualsName(name)).findAny();
+        return this.userFileStorage.read().stream().filter(user -> user.isEqualToName(name)).findAny();
     }
 }

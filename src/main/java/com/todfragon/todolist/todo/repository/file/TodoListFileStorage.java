@@ -27,8 +27,8 @@ final class TodoListFileStorage {
 
     void updateStatus(StorageItem updatedStorageItem) {
         List<StorageItem> storageItems = read().stream().filter(storageItem -> {
-            if (storageItem.getIndex().equals(updatedStorageItem.getIndex())) {
-                storageItem.setStatus(updatedStorageItem.getStatus());
+            if (storageItem.isEqualToIndexFrom(updatedStorageItem)) {
+                storageItem.setStatusFrom(updatedStorageItem);
             }
             return true;
         }).collect(Collectors.toList());

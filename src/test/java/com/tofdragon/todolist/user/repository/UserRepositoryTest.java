@@ -20,6 +20,6 @@ public class UserRepositoryTest {
         UserRepository userRepository = new UserFileRepository();
         User user = userRepository.findByName("user1").get();
 
-        assertThat(user.isMatchUserNameAndPassword("user1", "123456"), Is.is(true));
+        assertThat(user.isEqualToNameAndPassword("user1", "123456"), Is.is(true));
     }
 }

@@ -20,7 +20,7 @@ public final class UserService {
 
     public Boolean isLoginSuccess(final String name, final String password) {
         Optional<User> user = userRepository.findByName(name);
-        return user.map(value -> value.isMatchUserNameAndPassword(name, password)).orElse(false);
+        return user.map(value -> value.isEqualToNameAndPassword(name, password)).orElse(false);
     }
 
 }

@@ -31,7 +31,7 @@ public final class Item {
         this.status = ItemStatus.DONE;
     }
 
-    public Boolean indexEqualsOf(Integer index) {
+    public Boolean isEqualToIndex(Integer index) {
         return this.index().equals(index);
     }
 
