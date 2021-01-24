@@ -14,7 +14,7 @@ final class UserFileStorage {
 
     private final FileStorage<User> fileStorage;
 
-    public UserFileStorage() {
+    UserFileStorage() {
         final String fileName = ".todo-config";
         fileStorage = new FileStorage<>(fileName);
     }

@@ -14,7 +14,7 @@ final class TodoListFileStorage {
 
     private final FileStorage<StorageItem> fileStorage;
 
-    public TodoListFileStorage() {
+    TodoListFileStorage() {
         final String fileName = "todo-list-db.txt";
         fileStorage = new FileStorage<>(fileName);
     }
