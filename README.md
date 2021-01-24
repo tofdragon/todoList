@@ -14,9 +14,9 @@ mvn dependency:copy-dependencies -DoutputDirectory=target/lib
 
 # 运行
 
-进入 /target目录
+进入项目根目录
 
 cmd中输入
 
-java -jar todolist-1.0.jar
+java -jar target/todolist-1.0.jar
 
