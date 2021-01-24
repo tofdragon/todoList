@@ -1,9 +1,10 @@
 package com.todfragon.todolist.cli;
 
-import java.util.Scanner;
-
+import com.todfragon.todolist.cli.command.domain.Input;
+import com.todfragon.todolist.cli.command.domain.Output;
 import com.todfragon.todolist.cli.command.facade.CommandFacade;
-import com.todfragon.todolist.cli.command.facade.Output;
+import com.todfragon.todolist.cli.command.facade.ConsoleInput;
+import com.todfragon.todolist.cli.command.facade.ConsoleOutput;
 
 /**
  * 待办Cli
@@ -12,25 +13,32 @@ import com.todfragon.todolist.cli.command.facade.Output;
  */
 public final class TodoListCli {
 
-    private final CommandFacade commandFacade = new CommandFacade();
+    private final CommandFacade commandFacade;
 
-    private final Output output = new Output();
+    private final Input input;
+
+    private final Output output;
+
+    public TodoListCli() {
+        this.input = new ConsoleInput();
+        this.output = new ConsoleOutput();
+        this.commandFacade = new CommandFacade();
+    }
 
     /**
      * 运行
      */
     public void run() {
         outputTip();
-        Scanner in = new Scanner(System.in);
-        while (in.hasNext()) {
-            String input = in.nextLine();
-            handleCommand(input);
+        while (input.hasNextLine()) {
+            String userInput = input.nextLine();
+            handleCommand(userInput);
         }
     }
 
-    private void handleCommand(String input) {
+    private void handleCommand(String userInput) {
         try {
-            commandFacade.handle(input);
+            commandFacade.handle(userInput, input, output);
         } catch (Exception e) {
             formatErrorOutput(e);
         } finally {

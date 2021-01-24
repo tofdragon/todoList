@@ -14,12 +14,18 @@ public final class CommandContext {
 
     private Args args;
 
+    private Output output;
+
+    private Input input;
+
     private CommandContext() {
     }
 
-    public static CommandContext create(Args args) {
+    public static CommandContext create(Args args, Input input, Output output) {
         CommandContext context = new CommandContext();
         context.args = args;
+        context.input = input;
+        context.output = output;
         return context;
     }
 }

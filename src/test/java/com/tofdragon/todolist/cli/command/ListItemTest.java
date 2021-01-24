@@ -2,10 +2,9 @@ package com.tofdragon.todolist.cli.command;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
-import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.args.Args;
-import com.todfragon.todolist.cli.command.list.ListItemCommand;
-import com.todfragon.todolist.cli.command.list.domain.ListItemArgs;
+import com.todfragon.todolist.cli.command.item.list.ListItemCommand;
+import com.todfragon.todolist.cli.command.item.list.domain.ListItemArgs;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -41,7 +40,7 @@ public class ListItemTest extends AbstractCommandTest {
         getTodoListService().doneItem(3);
 
         ListItemCommand listItemCommand = new ListItemCommand(getTodoListService());
-        listItemCommand.execute(CommandContext.create(Args.create("todo list")));
+        listItemCommand.execute(createCommandContext(Args.create("todo list")));
         assertThat(systemOutRule.getLogWithNormalizedLineSeparator(),
                 Is.is("1.item1\n2.item2\nTotal: 2 items\n"));
     }
@@ -55,7 +54,7 @@ public class ListItemTest extends AbstractCommandTest {
         getTodoListService().doneItem(3);
 
         ListItemCommand listItemCommand = new ListItemCommand(getTodoListService());
-        listItemCommand.execute(CommandContext.create(Args.create("todo list --all")));
+        listItemCommand.execute(createCommandContext(Args.create("todo list --all")));
         assertThat(systemOutRule.getLogWithNormalizedLineSeparator(),
                 Is.is("1.item1\n2.item2\n3.Done item3\nTotal: 3 items, 1 item done\n"));
     }

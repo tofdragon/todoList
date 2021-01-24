@@ -45,8 +45,12 @@ public final class Args {
         return Collections.unmodifiableList(this.parameters);
     }
 
+    public String parameter(Integer index) {
+        return parameters().get(index);
+    }
+
     public String firstParameter() {
-        return parameters.get(0);
+        return parameters().get(0);
     }
 
     void fillParameters(List<String> parameters) {

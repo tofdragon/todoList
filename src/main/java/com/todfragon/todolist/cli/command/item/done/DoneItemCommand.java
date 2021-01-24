@@ -1,8 +1,8 @@
-package com.todfragon.todolist.cli.command.done;
+package com.todfragon.todolist.cli.command.item.done;
 
 import com.todfragon.todolist.cli.command.AbstractCommand;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
-import com.todfragon.todolist.cli.command.done.domain.DoneItemArgs;
+import com.todfragon.todolist.cli.command.item.done.domain.DoneItemArgs;
 import com.todfragon.todolist.service.TodoListService;
 
 /**
@@ -31,6 +31,6 @@ public final class DoneItemCommand extends AbstractCommand {
 
         todoListService.doneItem(doneItemArgs.getItemIndex());
 
-        outputLn(String.format("Item %s done", doneItemArgs.getItemIndex()));
+        commandContext.getOutput().infoLn(String.format("Item %s done", doneItemArgs.getItemIndex()));
     }
 }

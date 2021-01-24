@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.todfragon.todolist.cli.command.Command;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
+import com.todfragon.todolist.cli.command.domain.Input;
+import com.todfragon.todolist.cli.command.domain.Output;
 import com.todfragon.todolist.cli.command.domain.args.Args;
 
 /**
@@ -13,9 +15,9 @@ public final class CommandFacade {
 
     private static final List<Command> COMMANDS = CommandFactory.create();
 
-    public void handle(final String input) {
-        Args args = Args.create(input);
-        findCommandBy(args.commandName()).execute(CommandContext.create(args));
+    public void handle(final String userInput, final Input input, final Output output) {
+        Args args = Args.create(userInput);
+        findCommandBy(args.commandName()).execute(CommandContext.create(args, input, output));
     }
 
     private Command findCommandBy(final String commandName) {

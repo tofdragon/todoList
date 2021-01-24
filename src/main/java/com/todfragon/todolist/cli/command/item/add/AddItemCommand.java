@@ -1,8 +1,8 @@
-package com.todfragon.todolist.cli.command.add;
+package com.todfragon.todolist.cli.command.item.add;
 
 import com.todfragon.todolist.cli.command.AbstractCommand;
-import com.todfragon.todolist.cli.command.add.domain.AddItemArgs;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
+import com.todfragon.todolist.cli.command.item.add.domain.AddItemArgs;
 import com.todfragon.todolist.domain.Item;
 import com.todfragon.todolist.service.TodoListService;
 
@@ -32,7 +32,7 @@ public final class AddItemCommand extends AbstractCommand {
 
         Item addedItem = todoListService.addItem(addItemArgs.getItemName());
 
-        outputLn(String.format("1.%s", addedItem.name()));
-        outputLn(String.format("Item %s added", addedItem.index()));
+        commandContext.getOutput().infoLn(String.format("1.%s", addedItem.name()));
+        commandContext.getOutput().infoLn(String.format("Item %s added", addedItem.index()));
     }
 }

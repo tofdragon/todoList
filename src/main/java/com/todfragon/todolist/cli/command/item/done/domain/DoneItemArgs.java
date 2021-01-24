@@ -1,4 +1,4 @@
-package com.todfragon.todolist.cli.command.done.domain;
+package com.todfragon.todolist.cli.command.item.done.domain;
 
 import com.todfragon.todolist.cli.command.domain.args.Args;
 

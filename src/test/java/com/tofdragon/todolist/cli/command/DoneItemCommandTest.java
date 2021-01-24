@@ -2,10 +2,9 @@ package com.tofdragon.todolist.cli.command;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
-import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.args.Args;
-import com.todfragon.todolist.cli.command.done.DoneItemCommand;
-import com.todfragon.todolist.cli.command.done.domain.DoneItemArgs;
+import com.todfragon.todolist.cli.command.item.done.DoneItemCommand;
+import com.todfragon.todolist.cli.command.item.done.domain.DoneItemArgs;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -31,7 +30,7 @@ public class DoneItemCommandTest extends AbstractCommandTest {
         DoneItemCommand doneItemCommand = new DoneItemCommand(getTodoListService());
 
         getTodoListService().addItem("item1");
-        doneItemCommand.execute(CommandContext.create(Args.create("todo done 1")));
+        doneItemCommand.execute(createCommandContext(Args.create("todo done 1")));
         assertThat(systemOutRule.getLogWithNormalizedLineSeparator(), Is.is("Item 1 done\n"));
     }
 }

@@ -4,6 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import com.todfragon.todolist.cli.command.domain.CommandContext;
+import com.todfragon.todolist.cli.command.domain.args.Args;
+import com.todfragon.todolist.cli.command.facade.ConsoleInput;
+import com.todfragon.todolist.cli.command.facade.ConsoleOutput;
 import com.todfragon.todolist.repository.local.TodoListFileRepository;
 import com.todfragon.todolist.service.TodoListService;
 
@@ -36,5 +40,9 @@ public abstract class AbstractCommandTest {
 
     protected final TodoListService getTodoListService() {
         return todoListService;
+    }
+
+    protected final CommandContext createCommandContext(Args args) {
+        return CommandContext.create(args, new ConsoleInput(), new ConsoleOutput());
     }
 }
