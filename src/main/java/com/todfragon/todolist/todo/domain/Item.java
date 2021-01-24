@@ -1,37 +1,23 @@
 package com.todfragon.todolist.todo.domain;
 
+import lombok.Builder;
+
 /**
  * 待办项
  *
  * @author sunjing
  */
+@Builder
 public final class Item {
 
-    private Integer index;
+    private final Integer index;
 
-    private String name;
+    private final String name;
 
-    private ItemStatus status;
+    @Builder.Default
+    private ItemStatus status = ItemStatus.UN_DONE;
 
-    private String userName;
-
-    private Item() {
-    }
-
-    public static Item create(Integer index, String itemName, String userName) {
-        Item item = new Item();
-        item.index = index;
-        item.name = itemName;
-        item.status = ItemStatus.UN_DONE;
-        item.userName = userName;
-        return item;
-    }
-
-    public static Item create(Integer index, String itemName, ItemStatus itemStatus, String userName) {
-        Item item = create(index, itemName, userName);
-        item.status = itemStatus;
-        return item;
-    }
+    private final String userName;
 
     public Integer index() {
         return this.index;

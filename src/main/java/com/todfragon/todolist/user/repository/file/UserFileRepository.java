@@ -1,4 +1,4 @@
-package com.todfragon.todolist.user.repository.local;
+package com.todfragon.todolist.user.repository.file;
 
 
 import java.util.Optional;
@@ -13,14 +13,14 @@ import com.todfragon.todolist.user.repository.UserRepository;
  */
 public class UserFileRepository implements UserRepository {
 
-    private final FileStorage fileStorage;
+    private final UserFileStorage userFileStorage;
 
     public UserFileRepository() {
-        this.fileStorage = new FileStorage();
+        this.userFileStorage = new UserFileStorage();
     }
 
     @Override
     public Optional<User> findByName(String name) {
-        return this.fileStorage.read().stream().filter(user -> user.isEqualsName(name)).findAny();
+        return this.userFileStorage.read().stream().filter(user -> user.isEqualsName(name)).findAny();
     }
 }

@@ -1,8 +1,9 @@
 package com.todfragon.todolist.cli.command.domain;
 
-import com.todfragon.todolist.cli.Session;
 import com.todfragon.todolist.cli.command.domain.args.Args;
+import com.todfragon.todolist.security.Session;
 
+import lombok.Builder;
 import lombok.Getter;
 
 /**
@@ -11,6 +12,7 @@ import lombok.Getter;
  * @author sunjing
  */
 @Getter
+@Builder
 public final class CommandContext {
 
     private Args args;
@@ -21,23 +23,11 @@ public final class CommandContext {
 
     private Session session;
 
-    private CommandContext() {
+    public Boolean isLoginIn() {
+        return getSession().isLoginIn();
     }
 
-    public static CommandContext create(Args args, Input input, Output output) {
-        CommandContext context = new CommandContext();
-        context.args = args;
-        context.input = input;
-        context.output = output;
-        return context;
-    }
-
-    public static CommandContext create(Args args, Input input, Output output, Session session) {
-        CommandContext context = new CommandContext();
-        context.args = args;
-        context.input = input;
-        context.output = output;
-        context.session = session;
-        return context;
+    public String currentLoginUserName() {
+        return getSession().currentUserName();
     }
 }

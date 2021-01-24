@@ -2,7 +2,7 @@ package com.tofdragon.todolist.user.service;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
-import com.todfragon.todolist.user.repository.local.UserFileRepository;
+import com.todfragon.todolist.user.repository.file.UserFileRepository;
 import com.todfragon.todolist.user.service.UserService;
 
 import static org.junit.Assert.assertThat;

@@ -24,7 +24,7 @@ public final class NeedLoginCommand extends AbstractCommand {
 
     @Override
     public void execute(CommandContext commandContext) {
-        if (commandContext.getSession().isLoginIn()) {
+        if (commandContext.isLoginIn()) {
             this.command.execute(commandContext);
             return;
         }

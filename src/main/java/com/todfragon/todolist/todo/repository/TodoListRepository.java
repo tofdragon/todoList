@@ -1,6 +1,7 @@
 package com.todfragon.todolist.todo.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.todfragon.todolist.todo.domain.Item;
 
@@ -17,24 +18,27 @@ public interface TodoListRepository {
     void save(Item item);
 
     /**
-     * 查询待办项根据待办index
+     * 查询待办项根据用户名和待办index
      *
-     * @param index 待办index
-     * @return 查询到的待办项
+     * @param userName 用户名
+     * @param index    待办index
+     * @return 待办项
      */
-    Item findItemByIndex(String userName, int index);
+    Optional<Item> findItemBy(String userName, int index);
 
     /**
-     * 查询未完成的待办
+     * 根据用户名查询未完成的待办
      *
-     * @return 未完成待办集合
+     * @param userName 用户名
+     * @return 待办项集合
      */
     List<Item> findUnDoneItems(String userName);
 
     /**
-     * 查询所有状态的待办
+     * 根据用户查询所有的待办
      *
-     * @return 所有待办集合
+     * @param userName 用户名
+     * @return 待办项集合
      */
     List<Item> findAllItems(String userName);
 
@@ -46,9 +50,10 @@ public interface TodoListRepository {
     void updateItemToDone(Item item);
 
     /**
-     * 总数
+     * 当前用户待办总数
      *
-     * @return 总数
+     * @param userName 用户名
+     * @return 当前用户待办总数
      */
     Integer count(String userName);
 

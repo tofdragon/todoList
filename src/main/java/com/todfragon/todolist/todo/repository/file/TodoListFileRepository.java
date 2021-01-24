@@ -1,6 +1,7 @@
-package com.todfragon.todolist.todo.repository.local;
+package com.todfragon.todolist.todo.repository.file;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,24 +15,24 @@ import com.todfragon.todolist.todo.repository.TodoListRepository;
  */
 public final class TodoListFileRepository implements TodoListRepository {
 
-    private final FileStorage fileStorage;
+    private final TodoListFileStorage todoListFileStorage;
 
     public TodoListFileRepository() {
-        this.fileStorage = new FileStorage();
+        this.todoListFileStorage = new TodoListFileStorage();
     }
 
     @Override
     public void save(Item item) {
-        fileStorage.add(StorageItem.from(item));
+        todoListFileStorage.add(StorageItem.from(item));
     }
 
     @Override
-    public Item findItemByIndex(String userName, int index) {
-        return allItems(userName).filter(item -> item.indexEqualsOf(index)).findAny().orElse(null);
+    public Optional<Item> findItemBy(String userName, int index) {
+        return allItems(userName).filter(item -> item.indexEqualsOf(index)).findAny();
     }
 
     private Stream<Item> allItems(String userName) {
-        return fileStorage.read().stream().map(StorageItem::toItem).filter(item -> item.userName().equals(userName));
+        return todoListFileStorage.read().stream().map(StorageItem::toItem).filter(item -> item.userName().equals(userName));
     }
 
     @Override
@@ -46,7 +47,7 @@ public final class TodoListFileRepository implements TodoListRepository {
 
     @Override
     public void updateItemToDone(Item doneItem) {
-        fileStorage.updateStatus(StorageItem.from(doneItem));
+        todoListFileStorage.updateStatus(StorageItem.from(doneItem));
     }
 
     @Override
@@ -56,6 +57,6 @@ public final class TodoListFileRepository implements TodoListRepository {
 
     @Override
     public void deleteAll() {
-        fileStorage.deleteAll();
+        todoListFileStorage.deleteAll();
     }
 }

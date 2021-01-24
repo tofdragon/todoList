@@ -4,12 +4,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
-import com.todfragon.todolist.cli.Session;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.args.Args;
 import com.todfragon.todolist.cli.command.facade.ConsoleInput;
 import com.todfragon.todolist.cli.command.facade.ConsoleOutput;
-import com.todfragon.todolist.todo.repository.local.TodoListFileRepository;
+import com.todfragon.todolist.security.Session;
+import com.todfragon.todolist.todo.repository.file.TodoListFileRepository;
 import com.todfragon.todolist.todo.service.TodoListService;
 
 /**
@@ -49,6 +49,7 @@ public abstract class AbstractTodoCommandTest {
     }
 
     protected final CommandContext createCommandContextWithSession(Args args) {
-        return CommandContext.create(args, new ConsoleInput(), new ConsoleOutput(), session);
+        return CommandContext.builder().args(args)
+                .input(new ConsoleInput()).output(new ConsoleOutput()).session(session).build();
     }
 }

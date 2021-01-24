@@ -30,8 +30,7 @@ public final class AddItemCommand extends AbstractCommand {
     public void execute(CommandContext commandContext) {
         AddItemArgs addItemArgs = AddItemArgs.create(commandContext.getArgs());
 
-        Item addedItem = todoListService.addItem(commandContext.getSession().currentUserName(),
-                addItemArgs.getItemName());
+        Item addedItem = todoListService.addItem(commandContext.currentLoginUserName(), addItemArgs.getItemName());
 
         commandContext.getOutput().infoLn(String.format("1.%s", addedItem.name()));
         commandContext.getOutput().infoLn(String.format("Item %s added", addedItem.index()));

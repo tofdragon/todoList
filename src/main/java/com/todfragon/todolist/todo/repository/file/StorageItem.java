@@ -1,4 +1,4 @@
-package com.todfragon.todolist.todo.repository.local;
+package com.todfragon.todolist.todo.repository.file;
 
 import com.todfragon.todolist.todo.domain.Item;
 import com.todfragon.todolist.todo.domain.ItemStatus;
@@ -13,7 +13,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-class StorageItem {
+final class StorageItem {
 
     private Integer index;
 
@@ -23,7 +23,7 @@ class StorageItem {
 
     private String userName;
 
-    public static StorageItem from(Item item) {
+    static StorageItem from(Item item) {
         StorageItem storageItem = new StorageItem();
         storageItem.index = item.index();
         storageItem.name = item.name();
@@ -32,7 +32,7 @@ class StorageItem {
         return storageItem;
     }
 
-    public Item toItem() {
-        return Item.create(this.getIndex(), this.getName(), this.getStatus(), this.getUserName());
+    Item toItem() {
+        return Item.builder().index(getIndex()).name(getName()).status(getStatus()).userName(getUserName()).build();
     }
 }

@@ -10,9 +10,9 @@ import com.todfragon.todolist.cli.command.todo.done.DoneItemCommand;
 import com.todfragon.todolist.cli.command.todo.list.ListItemCommand;
 import com.todfragon.todolist.cli.command.user.login.LoginCommand;
 import com.todfragon.todolist.cli.command.user.logout.LogoutCommand;
-import com.todfragon.todolist.todo.repository.local.TodoListFileRepository;
+import com.todfragon.todolist.todo.repository.file.TodoListFileRepository;
 import com.todfragon.todolist.todo.service.TodoListService;
-import com.todfragon.todolist.user.repository.local.UserFileRepository;
+import com.todfragon.todolist.user.repository.file.UserFileRepository;
 import com.todfragon.todolist.user.service.UserService;
 
 /**

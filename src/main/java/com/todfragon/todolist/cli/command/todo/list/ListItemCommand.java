@@ -33,12 +33,12 @@ public final class ListItemCommand extends AbstractCommand {
     public void execute(CommandContext commandContext) {
         ListItemArgs listItemArgs = ListItemArgs.create(commandContext.getArgs());
         if (listItemArgs.isListUnDone()) {
-            outputUnDone(commandContext.getOutput(), commandContext.getSession().currentUserName());
+            outputUnDone(commandContext.getOutput(), commandContext.currentLoginUserName());
             return;
         }
 
         if (listItemArgs.isListAll()) {
-            outputList(commandContext.getOutput(), commandContext.getSession().currentUserName());
+            outputList(commandContext.getOutput(), commandContext.currentLoginUserName());
         }
     }
 
@@ -55,7 +55,7 @@ public final class ListItemCommand extends AbstractCommand {
             output.infoLn(String.format("%s.%s%s", item.index(), status, item.name()));
         });
 
-        Long doneItemsCount = allItems.stream().filter(item -> item.isDone()).count();
+        Long doneItemsCount = allItems.stream().filter(Item::isDone).count();
         output.infoLn(String.format("Total: %d items, %d item done", allItems.size(), doneItemsCount));
     }
 }

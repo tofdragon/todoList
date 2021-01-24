@@ -3,8 +3,7 @@ package com.todfragon.todolist.cli;
 import com.todfragon.todolist.cli.command.domain.Input;
 import com.todfragon.todolist.cli.command.domain.Output;
 import com.todfragon.todolist.cli.command.facade.CommandFacade;
-import com.todfragon.todolist.cli.command.facade.ConsoleInput;
-import com.todfragon.todolist.cli.command.facade.ConsoleOutput;
+import com.todfragon.todolist.security.Session;
 
 /**
  * 待办Cli
@@ -19,10 +18,10 @@ public final class TodoListCli {
 
     private final Output output;
 
-    public TodoListCli() {
-        this.input = new ConsoleInput();
-        this.output = new ConsoleOutput();
-        this.commandFacade = new CommandFacade();
+    public TodoListCli(Session session, Input input, Output output) {
+        this.commandFacade = new CommandFacade(session);
+        this.input = input;
+        this.output = output;
     }
 
     /**

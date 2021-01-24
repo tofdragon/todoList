@@ -4,7 +4,7 @@ import org.hamcrest.core.Is;
 import org.junit.Test;
 import com.todfragon.todolist.user.domain.User;
 import com.todfragon.todolist.user.repository.UserRepository;
-import com.todfragon.todolist.user.repository.local.UserFileRepository;
+import com.todfragon.todolist.user.repository.file.UserFileRepository;
 
 import static org.junit.Assert.assertThat;
 

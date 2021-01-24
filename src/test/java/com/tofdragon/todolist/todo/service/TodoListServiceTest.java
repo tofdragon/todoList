@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import com.todfragon.todolist.todo.domain.Item;
 import com.todfragon.todolist.todo.repository.TodoListRepository;
-import com.todfragon.todolist.todo.repository.local.TodoListFileRepository;
+import com.todfragon.todolist.todo.repository.file.TodoListFileRepository;
 import com.todfragon.todolist.todo.service.TodoListService;
 
 import static org.junit.Assert.assertThat;
@@ -60,7 +60,7 @@ public class TodoListServiceTest {
         assertThat(itemCreated.isUnDone(), Is.is(true));
 
         todoListService.doneItem(userName, 1);
-        assertThat(todoListService.queryItemByIndex(userName, 1).isDone(), Is.is(true));
+        assertThat(todoListService.queryItemByIndex(userName, 1).get().isDone(), Is.is(true));
     }
 
     @Test

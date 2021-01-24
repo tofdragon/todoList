@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import com.todfragon.todolist.todo.domain.Item;
 import com.todfragon.todolist.todo.repository.TodoListRepository;
-import com.todfragon.todolist.todo.repository.local.TodoListFileRepository;
+import com.todfragon.todolist.todo.repository.file.TodoListFileRepository;
 
 import static org.junit.Assert.assertThat;
 
@@ -35,10 +35,10 @@ public class TodoListRepositoryTest {
     @Test
     public void should_save_item() {
         final String userName = "user1";
-        todoListRepository.save(Item.create(1, "item1", userName));
-        todoListRepository.save(Item.create(2, "item2", userName));
+        todoListRepository.save(Item.builder().index(1).name("item1").userName(userName).build());
+        todoListRepository.save(Item.builder().index(2).name("item2").userName(userName).build());
 
-        Item item = todoListRepository.findItemByIndex(userName, 1);
+        Item item = todoListRepository.findItemBy(userName, 1).get();
 
         assertThat(item.index(), Is.is(1));
         assertThat(item.name(), Is.is("item1"));
@@ -47,17 +47,17 @@ public class TodoListRepositoryTest {
     @Test
     public void should_update_item_status_to_done() {
         final String userName = "user1";
-        todoListRepository.save(Item.create(1, "item1", userName));
-        todoListRepository.save(Item.create(2, "item2", userName));
+        todoListRepository.save(Item.builder().index(1).name("item1").userName(userName).build());
+        todoListRepository.save(Item.builder().index(2).name("item2").userName(userName).build());
 
-        Item unDoneItem = todoListRepository.findItemByIndex(userName, 1);
+        Item unDoneItem = todoListRepository.findItemBy(userName, 1).get();
         assertThat(unDoneItem.index(), Is.is(1));
         assertThat(unDoneItem.isUnDone(), Is.is(true));
 
         unDoneItem.done();
         todoListRepository.updateItemToDone(unDoneItem);
 
-        Item doneItem = todoListRepository.findItemByIndex(userName, 1);
+        Item doneItem = todoListRepository.findItemBy(userName, 1).get();
         assertThat(doneItem.index(), Is.is(1));
         assertThat(doneItem.isDone(), Is.is(true));
     }
@@ -65,9 +65,9 @@ public class TodoListRepositoryTest {
     @Test
     public void should_query_undone_items() {
         final String userName = "user1";
-        todoListRepository.save(Item.create(1, "item1", userName));
-        todoListRepository.save(Item.create(2, "item2", userName));
-        todoListRepository.save(Item.create(3, "item2", userName));
+        todoListRepository.save(Item.builder().index(1).name("item1").userName(userName).build());
+        todoListRepository.save(Item.builder().index(2).name("item2").userName(userName).build());
+        todoListRepository.save(Item.builder().index(3).name("item3").userName(userName).build());
 
         List<Item> unDoneItems = todoListRepository.findUnDoneItems(userName);
 
@@ -80,9 +80,9 @@ public class TodoListRepositoryTest {
     public void should_query_all_items() {
         final String userName = "user1";
 
-        todoListRepository.save(Item.create(1, "item1", userName));
-        todoListRepository.save(Item.create(2, "item2", userName));
-        todoListRepository.save(Item.create(3, "item2", userName));
+        todoListRepository.save(Item.builder().index(1).name("item1").userName(userName).build());
+        todoListRepository.save(Item.builder().index(2).name("item2").userName(userName).build());
+        todoListRepository.save(Item.builder().index(3).name("item3").userName(userName).build());
 
         List<Item> allItems = todoListRepository.findAllItems(userName);
 
@@ -98,10 +98,10 @@ public class TodoListRepositoryTest {
     public void should_right_count() {
         final String userName = "user1";
 
-        todoListRepository.save(Item.create(1, "item1", userName));
-        todoListRepository.save(Item.create(2, "item2", userName));
-        todoListRepository.save(Item.create(3, "item2", userName));
-        todoListRepository.save(Item.create(4, "item2", userName));
+        todoListRepository.save(Item.builder().index(1).name("item1").userName(userName).build());
+        todoListRepository.save(Item.builder().index(2).name("item2").userName(userName).build());
+        todoListRepository.save(Item.builder().index(3).name("item3").userName(userName).build());
+        todoListRepository.save(Item.builder().index(4).name("item4").userName(userName).build());
 
         assertThat(todoListRepository.count(userName), Is.is(4));
     }

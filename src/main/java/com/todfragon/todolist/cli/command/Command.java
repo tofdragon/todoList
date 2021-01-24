@@ -19,7 +19,7 @@ public interface Command {
     /**
      * 执行
      *
-     * @param commandContext 上下文
+     * @param commandContext 执行上下文
      */
     void execute(CommandContext commandContext);
 }
