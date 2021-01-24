@@ -3,8 +3,8 @@ package com.tofdragon.todolist.cli.command;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 import com.todfragon.todolist.cli.command.domain.args.Args;
-import com.todfragon.todolist.cli.command.item.done.DoneItemCommand;
-import com.todfragon.todolist.cli.command.item.done.domain.DoneItemArgs;
+import com.todfragon.todolist.cli.command.todo.done.DoneItemCommand;
+import com.todfragon.todolist.cli.command.todo.done.domain.DoneItemArgs;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

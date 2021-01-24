@@ -1,4 +1,4 @@
-package com.todfragon.todolist.cli.command.item.list.domain;
+package com.todfragon.todolist.cli.command.todo.list.domain;
 
 /**
  * 查询的类型

@@ -1,8 +1,8 @@
-package com.todfragon.todolist.cli.command.item.add;
+package com.todfragon.todolist.cli.command.todo.add;
 
 import com.todfragon.todolist.cli.command.AbstractCommand;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
-import com.todfragon.todolist.cli.command.item.add.domain.AddItemArgs;
+import com.todfragon.todolist.cli.command.todo.add.domain.AddItemArgs;
 import com.todfragon.todolist.domain.Item;
 import com.todfragon.todolist.service.TodoListService;
 

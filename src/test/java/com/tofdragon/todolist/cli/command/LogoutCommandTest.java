@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
  *
  * @author sunjing
  */
-public class LogoutCommandTest  {
+public class LogoutCommandTest {
 
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();

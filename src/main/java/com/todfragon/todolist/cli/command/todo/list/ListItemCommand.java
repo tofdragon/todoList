@@ -1,11 +1,11 @@
-package com.todfragon.todolist.cli.command.item.list;
+package com.todfragon.todolist.cli.command.todo.list;
 
 import java.util.List;
 
 import com.todfragon.todolist.cli.command.AbstractCommand;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.Output;
-import com.todfragon.todolist.cli.command.item.list.domain.ListItemArgs;
+import com.todfragon.todolist.cli.command.todo.list.domain.ListItemArgs;
 import com.todfragon.todolist.domain.Item;
 import com.todfragon.todolist.service.TodoListService;
 

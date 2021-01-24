@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.todfragon.todolist.cli.command.Command;
-import com.todfragon.todolist.cli.command.item.add.AddItemCommand;
-import com.todfragon.todolist.cli.command.item.done.DoneItemCommand;
-import com.todfragon.todolist.cli.command.item.list.ListItemCommand;
+import com.todfragon.todolist.cli.command.todo.add.AddItemCommand;
+import com.todfragon.todolist.cli.command.todo.done.DoneItemCommand;
+import com.todfragon.todolist.cli.command.todo.list.ListItemCommand;
 import com.todfragon.todolist.repository.local.TodoListFileRepository;
 import com.todfragon.todolist.service.TodoListService;
 
