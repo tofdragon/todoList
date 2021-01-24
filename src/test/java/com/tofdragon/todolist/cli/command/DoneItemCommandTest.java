@@ -5,7 +5,9 @@ import org.junit.Test;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.args.Args;
 import com.todfragon.todolist.cli.command.done.DoneItemCommand;
+import com.todfragon.todolist.cli.command.done.domain.DoneItemArgs;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -14,6 +16,15 @@ import static org.junit.Assert.assertThat;
  * @author sunjing
  */
 public class DoneItemCommandTest extends AbstractCommandTest {
+
+    @Test
+    public void should_done_args() {
+        Args args = Args.create("todo done 1");
+        DoneItemArgs doneItemArgs = DoneItemArgs.create(args);
+
+        assertThat(args.commandName(), is("done"));
+        assertThat(doneItemArgs.getItemIndex(), is(1));
+    }
 
     @Test
     public void should_show_done_item() {

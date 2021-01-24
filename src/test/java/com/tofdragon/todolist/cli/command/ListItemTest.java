@@ -5,7 +5,9 @@ import org.junit.Test;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.args.Args;
 import com.todfragon.todolist.cli.command.list.ListItemCommand;
+import com.todfragon.todolist.cli.command.list.domain.ListItemArgs;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -14,6 +16,21 @@ import static org.junit.Assert.assertThat;
  * @author sunjing
  */
 public class ListItemTest extends AbstractCommandTest {
+
+    @Test
+    public void should_list_args() {
+        Args list = Args.create("todo list");
+        Args listAll = Args.create("todo list --all");
+
+        ListItemArgs listItemArgs = ListItemArgs.create(list);
+        ListItemArgs listAllItemRequest = ListItemArgs.create(listAll);
+
+        assertThat(list.commandName(), is("list"));
+        assertThat(listItemArgs.isListUnDone(), is(true));
+
+        assertThat(listAll.commandName(), is("list"));
+        assertThat(listAllItemRequest.isListAll(), is(true));
+    }
 
     @Test
     public void should_show_unDone_item() {
