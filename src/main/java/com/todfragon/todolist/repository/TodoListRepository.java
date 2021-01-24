@@ -22,21 +22,21 @@ public interface TodoListRepository {
      * @param index 待办index
      * @return 查询到的待办项
      */
-    Item findItemByIndex(int index);
+    Item findItemByIndex(String userName, int index);
 
     /**
      * 查询未完成的待办
      *
      * @return 未完成待办集合
      */
-    List<Item> findUnDoneItems();
+    List<Item> findUnDoneItems(String userName);
 
     /**
      * 查询所有状态的待办
      *
      * @return 所有待办集合
      */
-    List<Item> findAllItems();
+    List<Item> findAllItems(String userName);
 
     /**
      * 修改待办项为完成
@@ -50,7 +50,7 @@ public interface TodoListRepository {
      *
      * @return 总数
      */
-    Integer count();
+    Integer count(String userName);
 
     /**
      * 删除所有

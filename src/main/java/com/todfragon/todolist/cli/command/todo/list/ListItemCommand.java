@@ -33,23 +33,23 @@ public final class ListItemCommand extends AbstractCommand {
     public void execute(CommandContext commandContext) {
         ListItemArgs listItemArgs = ListItemArgs.create(commandContext.getArgs());
         if (listItemArgs.isListUnDone()) {
-            outputUnDone(commandContext.getOutput());
+            outputUnDone(commandContext.getOutput(), commandContext.getSession().currentUserName());
             return;
         }
 
         if (listItemArgs.isListAll()) {
-            outputList(commandContext.getOutput());
+            outputList(commandContext.getOutput(), commandContext.getSession().currentUserName());
         }
     }
 
-    private void outputUnDone(Output output) {
-        List<Item> unDoneItems = todoListService.listUnDoneItems();
+    private void outputUnDone(Output output, String useName) {
+        List<Item> unDoneItems = todoListService.listUnDoneItems(useName);
         unDoneItems.forEach(item -> output.infoLn(String.format("%s.%s", item.index(), item.name())));
         output.infoLn(String.format("Total: %d items", unDoneItems.size()));
     }
 
-    private void outputList(Output output) {
-        List<Item> allItems = todoListService.listAllItems();
+    private void outputList(Output output, String useName) {
+        List<Item> allItems = todoListService.listAllItems(useName);
         allItems.forEach(item -> {
             String status = item.isDone() ? "Done " : "";
             output.infoLn(String.format("%s.%s%s", item.index(), status, item.name()));

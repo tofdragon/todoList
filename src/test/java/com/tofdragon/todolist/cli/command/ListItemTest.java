@@ -33,28 +33,31 @@ public class ListItemTest extends AbstractCommandTest {
 
     @Test
     public void should_show_unDone_item() {
-        getTodoListService().addItem("item1");
-        getTodoListService().addItem("item2");
-        getTodoListService().addItem("item3");
+        final String userName = "user1";
 
-        getTodoListService().doneItem(3);
+        getTodoListService().addItem(userName, "item1");
+        getTodoListService().addItem(userName, "item2");
+        getTodoListService().addItem(userName, "item3");
+
+        getTodoListService().doneItem(userName, 3);
 
         ListItemCommand listItemCommand = new ListItemCommand(getTodoListService());
-        listItemCommand.execute(createCommandContext(Args.create("todo list")));
+        listItemCommand.execute(createCommandContextWithSession(Args.create("todo list")));
         assertThat(systemOutRule.getLogWithNormalizedLineSeparator(),
                 Is.is("1.item1\n2.item2\nTotal: 2 items\n"));
     }
 
     @Test
     public void should_show_all_item() {
-        getTodoListService().addItem("item1");
-        getTodoListService().addItem("item2");
-        getTodoListService().addItem("item3");
+        final String userName = "user1";
+        getTodoListService().addItem(userName, "item1");
+        getTodoListService().addItem(userName, "item2");
+        getTodoListService().addItem(userName, "item3");
 
-        getTodoListService().doneItem(3);
+        getTodoListService().doneItem(userName, 3);
 
         ListItemCommand listItemCommand = new ListItemCommand(getTodoListService());
-        listItemCommand.execute(createCommandContext(Args.create("todo list --all")));
+        listItemCommand.execute(createCommandContextWithSession(Args.create("todo list --all")));
         assertThat(systemOutRule.getLogWithNormalizedLineSeparator(),
                 Is.is("1.item1\n2.item2\n3.Done item3\nTotal: 3 items, 1 item done\n"));
     }

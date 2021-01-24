@@ -19,6 +19,7 @@ public final class LogoutCommand extends AbstractCommand {
 
     @Override
     public void execute(CommandContext commandContext) {
+        commandContext.getSession().logout();
         commandContext.getOutput().infoLn("Logout success!");
     }
 }

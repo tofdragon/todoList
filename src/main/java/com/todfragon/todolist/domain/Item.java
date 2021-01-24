@@ -13,19 +13,22 @@ public final class Item {
 
     private ItemStatus status;
 
+    private String userName;
+
     private Item() {
     }
 
-    public static Item create(Integer index, String name) {
+    public static Item create(Integer index, String itemName, String userName) {
         Item item = new Item();
         item.index = index;
-        item.name = name;
+        item.name = itemName;
         item.status = ItemStatus.UN_DONE;
+        item.userName = userName;
         return item;
     }
 
-    public static Item create(Integer index, String name, ItemStatus itemStatus) {
-        Item item = create(index, name);
+    public static Item create(Integer index, String itemName, ItemStatus itemStatus, String userName) {
+        Item item = create(index, itemName, userName);
         item.status = itemStatus;
         return item;
     }
@@ -56,5 +59,9 @@ public final class Item {
 
     public Boolean isDone() {
         return this.status == ItemStatus.DONE;
+    }
+
+    public String userName() {
+        return this.userName;
     }
 }

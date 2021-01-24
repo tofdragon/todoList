@@ -28,7 +28,7 @@ public class AddItemCommandTest extends AbstractCommandTest {
     @Test
     public void should_show_add_item() {
         AddItemCommand addItemCommand = new AddItemCommand(getTodoListService());
-        addItemCommand.execute(createCommandContext(Args.create("todo add item1")));
+        addItemCommand.execute(createCommandContextWithSession(Args.create("todo add item1")));
         assertThat(systemOutRule.getLogWithNormalizedLineSeparator(), Is.is("1.item1\nItem 1 added\n"));
     }
 

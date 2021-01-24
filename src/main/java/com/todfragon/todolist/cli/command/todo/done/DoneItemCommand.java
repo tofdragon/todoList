@@ -29,7 +29,7 @@ public final class DoneItemCommand extends AbstractCommand {
     public void execute(CommandContext commandContext) {
         DoneItemArgs doneItemArgs = DoneItemArgs.create(commandContext.getArgs());
 
-        todoListService.doneItem(doneItemArgs.getItemIndex());
+        todoListService.doneItem(commandContext.getSession().currentUserName(), doneItemArgs.getItemIndex());
 
         commandContext.getOutput().infoLn(String.format("Item %s done", doneItemArgs.getItemIndex()));
     }

@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import com.todfragon.todolist.cli.Session;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.args.Args;
 import com.todfragon.todolist.cli.command.facade.ConsoleInput;
@@ -25,10 +26,15 @@ public abstract class AbstractCommandTest {
 
     private TodoListFileRepository todoListFileRepository;
 
+    private Session session;
+
     @Before
     public void before() {
         todoListFileRepository = new TodoListFileRepository();
         todoListService = new TodoListService(todoListFileRepository);
+        session = new Session();
+
+        session.loginIn("user1");
         todoListFileRepository.deleteAll();
     }
 
@@ -42,7 +48,7 @@ public abstract class AbstractCommandTest {
         return todoListService;
     }
 
-    protected final CommandContext createCommandContext(Args args) {
-        return CommandContext.create(args, new ConsoleInput(), new ConsoleOutput());
+    protected final CommandContext createCommandContextWithSession(Args args) {
+        return CommandContext.create(args, new ConsoleInput(), new ConsoleOutput(), session);
     }
 }

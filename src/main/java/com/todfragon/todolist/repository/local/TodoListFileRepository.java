@@ -26,22 +26,22 @@ public final class TodoListFileRepository implements TodoListRepository {
     }
 
     @Override
-    public Item findItemByIndex(int index) {
-        return allItems().filter(item -> item.indexEqualsOf(index)).findAny().orElse(null);
+    public Item findItemByIndex(String userName, int index) {
+        return allItems(userName).filter(item -> item.indexEqualsOf(index)).findAny().orElse(null);
     }
 
-    private Stream<Item> allItems() {
-        return fileStorage.read().stream().map(StorageItem::toItem);
-    }
-
-    @Override
-    public List<Item> findUnDoneItems() {
-        return allItems().filter(Item::isUnDone).collect(Collectors.toList());
+    private Stream<Item> allItems(String userName) {
+        return fileStorage.read().stream().map(StorageItem::toItem).filter(item -> item.userName().equals(userName));
     }
 
     @Override
-    public List<Item> findAllItems() {
-        return allItems().collect(Collectors.toList());
+    public List<Item> findUnDoneItems(String userName) {
+        return allItems(userName).filter(Item::isUnDone).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Item> findAllItems(String userName) {
+        return allItems(userName).collect(Collectors.toList());
     }
 
     @Override
@@ -50,8 +50,8 @@ public final class TodoListFileRepository implements TodoListRepository {
     }
 
     @Override
-    public Integer count() {
-        return (int) allItems().count();
+    public Integer count(String userName) {
+        return (int) allItems(userName).count();
     }
 
     @Override

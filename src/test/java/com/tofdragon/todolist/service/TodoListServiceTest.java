@@ -39,9 +39,10 @@ public class TodoListServiceTest {
 
     @Test
     public void should_right_add_item() {
-        Item itemCreated1 = todoListService.addItem("item1");
+        final String userName = "user1";
+        Item itemCreated1 = todoListService.addItem(userName, "item1");
 
-        Item itemCreated2 = todoListService.addItem("item2");
+        Item itemCreated2 = todoListService.addItem(userName, "item2");
 
         assertThat(itemCreated1.index(), Is.is(1));
         assertThat(itemCreated1.name(), Is.is("item1"));
@@ -52,24 +53,26 @@ public class TodoListServiceTest {
 
     @Test
     public void should_item_status_is_done() {
-        Item itemCreated = todoListService.addItem("item1");
+        final String userName = "user1";
+        Item itemCreated = todoListService.addItem(userName, "item1");
 
         assertThat(itemCreated.index(), Is.is(1));
         assertThat(itemCreated.isUnDone(), Is.is(true));
 
-        todoListService.doneItem(1);
-        assertThat(todoListService.queryItemByIndex(1).isDone(), Is.is(true));
+        todoListService.doneItem(userName, 1);
+        assertThat(todoListService.queryItemByIndex(userName, 1).isDone(), Is.is(true));
     }
 
     @Test
     public void should_list_undone_items() {
-        Item itemCreated1 = todoListService.addItem("item1");
-        todoListService.addItem("item2");
-        todoListService.addItem("item3");
+        final String userName = "user1";
+        Item itemCreated1 = todoListService.addItem(userName, "item1");
+        todoListService.addItem(userName, "item2");
+        todoListService.addItem(userName, "item3");
 
-        todoListService.doneItem(itemCreated1.index());
+        todoListService.doneItem(userName, itemCreated1.index());
 
-        List<Item> unDoneItems = todoListService.listUnDoneItems();
+        List<Item> unDoneItems = todoListService.listUnDoneItems(userName);
 
         assertThat(unDoneItems.size(), Is.is(2));
         assertThat(unDoneItems.get(0).index(), Is.is(2));
@@ -77,13 +80,14 @@ public class TodoListServiceTest {
 
     @Test
     public void should_list_all_items() {
-        Item itemCreated1 = todoListService.addItem("item1");
-        todoListService.addItem("item2");
-        todoListService.addItem("item3");
+        final String userName = "user1";
+        Item itemCreated1 = todoListService.addItem(userName, "item1");
+        todoListService.addItem(userName, "item2");
+        todoListService.addItem(userName, "item3");
 
-        todoListService.doneItem(itemCreated1.index());
+        todoListService.doneItem(userName, itemCreated1.index());
 
-        List<Item> allItems = todoListService.listAllItems();
+        List<Item> allItems = todoListService.listAllItems(userName);
 
         assertThat(allItems.size(), Is.is(3));
         assertThat(allItems.get(0).index(), Is.is(1));

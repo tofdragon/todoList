@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import com.todfragon.todolist.cli.Session;
 import com.todfragon.todolist.cli.command.domain.CommandContext;
 import com.todfragon.todolist.cli.command.domain.args.Args;
 import com.todfragon.todolist.cli.command.facade.ConsoleInput;
@@ -32,7 +33,7 @@ public class LogoutCommandTest {
     public void should_show_logout_success() {
         LogoutCommand loginCommand = new LogoutCommand();
         loginCommand.execute(CommandContext.create(Args.create("todo logout"), new ConsoleInput(),
-                new ConsoleOutput()));
+                new ConsoleOutput(), new Session()));
 
         assertThat(systemOutRule.getLogWithNormalizedLineSeparator(), Is.is("Logout success!\n"));
     }

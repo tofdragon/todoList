@@ -20,28 +20,28 @@ public final class TodoListService {
         this.todoListRepository = todoListRepository;
     }
 
-    public Item addItem(String name) {
-        Integer index = ItemIndexFactory.create(todoListRepository.count()).nextIndex();
-        Item item = Item.create(index, name);
+    public Item addItem(String userName, String itemName) {
+        Integer index = ItemIndexFactory.create(todoListRepository.count(userName)).nextIndex();
+        Item item = Item.create(index, itemName, userName);
         todoListRepository.save(item);
         return item;
     }
 
-    public void doneItem(Integer index) {
-        Item item = todoListRepository.findItemByIndex(index);
+    public void doneItem(String userName, Integer index) {
+        Item item = todoListRepository.findItemByIndex(userName, index);
         item.done();
         todoListRepository.updateItemToDone(item);
     }
 
-    public Item queryItemByIndex(Integer index) {
-        return todoListRepository.findItemByIndex(index);
+    public Item queryItemByIndex(String userName, Integer index) {
+        return todoListRepository.findItemByIndex(userName, index);
     }
 
-    public List<Item> listUnDoneItems() {
-        return Collections.unmodifiableList(todoListRepository.findUnDoneItems());
+    public List<Item> listUnDoneItems(String userName) {
+        return Collections.unmodifiableList(todoListRepository.findUnDoneItems(userName));
     }
 
-    public List<Item> listAllItems() {
-        return Collections.unmodifiableList(todoListRepository.findAllItems());
+    public List<Item> listAllItems(String userName) {
+        return Collections.unmodifiableList(todoListRepository.findAllItems(userName));
     }
 }

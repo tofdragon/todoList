@@ -34,10 +34,11 @@ public class TodoListRepositoryTest {
 
     @Test
     public void should_save_item() {
-        todoListRepository.save(Item.create(1, "item1"));
-        todoListRepository.save(Item.create(2, "item2"));
+        final String userName = "user1";
+        todoListRepository.save(Item.create(1, "item1", userName));
+        todoListRepository.save(Item.create(2, "item2", userName));
 
-        Item item = todoListRepository.findItemByIndex(1);
+        Item item = todoListRepository.findItemByIndex(userName, 1);
 
         assertThat(item.index(), Is.is(1));
         assertThat(item.name(), Is.is("item1"));
@@ -45,28 +46,30 @@ public class TodoListRepositoryTest {
 
     @Test
     public void should_update_item_status_to_done() {
-        todoListRepository.save(Item.create(1, "item1"));
-        todoListRepository.save(Item.create(2, "item2"));
+        final String userName = "user1";
+        todoListRepository.save(Item.create(1, "item1", userName));
+        todoListRepository.save(Item.create(2, "item2", userName));
 
-        Item unDoneItem = todoListRepository.findItemByIndex(1);
+        Item unDoneItem = todoListRepository.findItemByIndex(userName, 1);
         assertThat(unDoneItem.index(), Is.is(1));
         assertThat(unDoneItem.isUnDone(), Is.is(true));
 
         unDoneItem.done();
         todoListRepository.updateItemToDone(unDoneItem);
 
-        Item doneItem = todoListRepository.findItemByIndex(1);
+        Item doneItem = todoListRepository.findItemByIndex(userName, 1);
         assertThat(doneItem.index(), Is.is(1));
         assertThat(doneItem.isDone(), Is.is(true));
     }
 
     @Test
     public void should_query_undone_items() {
-        todoListRepository.save(Item.create(1, "item1"));
-        todoListRepository.save(Item.create(2, "item2"));
-        todoListRepository.save(Item.create(3, "item2"));
+        final String userName = "user1";
+        todoListRepository.save(Item.create(1, "item1", userName));
+        todoListRepository.save(Item.create(2, "item2", userName));
+        todoListRepository.save(Item.create(3, "item2", userName));
 
-        List<Item> unDoneItems = todoListRepository.findUnDoneItems();
+        List<Item> unDoneItems = todoListRepository.findUnDoneItems(userName);
 
         assertThat(unDoneItems.size(), Is.is(3));
         assertThat(unDoneItems.get(0).index(), Is.is(1));
@@ -75,11 +78,13 @@ public class TodoListRepositoryTest {
 
     @Test
     public void should_query_all_items() {
-        todoListRepository.save(Item.create(1, "item1"));
-        todoListRepository.save(Item.create(2, "item2"));
-        todoListRepository.save(Item.create(3, "item2"));
+        final String userName = "user1";
 
-        List<Item> allItems = todoListRepository.findAllItems();
+        todoListRepository.save(Item.create(1, "item1", userName));
+        todoListRepository.save(Item.create(2, "item2", userName));
+        todoListRepository.save(Item.create(3, "item2", userName));
+
+        List<Item> allItems = todoListRepository.findAllItems(userName);
 
         assertThat(allItems.size(), Is.is(3));
         assertThat(allItems.get(0).index(), Is.is(1));
@@ -91,11 +96,13 @@ public class TodoListRepositoryTest {
 
     @Test
     public void should_right_count() {
-        todoListRepository.save(Item.create(1, "item1"));
-        todoListRepository.save(Item.create(2, "item2"));
-        todoListRepository.save(Item.create(3, "item2"));
-        todoListRepository.save(Item.create(4, "item2"));
+        final String userName = "user1";
 
-        assertThat(todoListRepository.count(), Is.is(4));
+        todoListRepository.save(Item.create(1, "item1", userName));
+        todoListRepository.save(Item.create(2, "item2", userName));
+        todoListRepository.save(Item.create(3, "item2", userName));
+        todoListRepository.save(Item.create(4, "item2", userName));
+
+        assertThat(todoListRepository.count(userName), Is.is(4));
     }
 }

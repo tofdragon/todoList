@@ -21,15 +21,18 @@ class StorageItem {
 
     private ItemStatus status;
 
+    private String userName;
+
     public static StorageItem from(Item item) {
         StorageItem storageItem = new StorageItem();
         storageItem.index = item.index();
         storageItem.name = item.name();
         storageItem.status = item.status();
+        storageItem.userName = item.userName();
         return storageItem;
     }
 
     public Item toItem() {
-        return Item.create(this.getIndex(), this.getName(), this.getStatus());
+        return Item.create(this.getIndex(), this.getName(), this.getStatus(), this.getUserName());
     }
 }
