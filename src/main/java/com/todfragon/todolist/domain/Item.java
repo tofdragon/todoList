@@ -24,6 +24,12 @@ public final class Item {
         return item;
     }
 
+    public static Item create(Integer index, String name, ItemStatus itemStatus) {
+        Item item = create(index, name);
+        item.status = itemStatus;
+        return item;
+    }
+
     public Integer index() {
         return this.index;
     }
@@ -40,7 +46,7 @@ public final class Item {
         return this.index().equals(index);
     }
 
-    private ItemStatus status() {
+    public ItemStatus status() {
         return this.status;
     }
 

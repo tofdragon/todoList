@@ -1,5 +1,6 @@
 package com.todfragon.todolist.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.todfragon.todolist.domain.Item;
@@ -20,20 +21,27 @@ public final class TodoListService {
     }
 
     public Item addItem(String name) {
-        Item item = Item.create(ItemIndexFactory.create(todoListRepository.count()).index(), name);
-        todoListRepository.saveItem(item);
+        Integer index = ItemIndexFactory.create(todoListRepository.count()).nextIndex();
+        Item item = Item.create(index, name);
+        todoListRepository.save(item);
         return item;
     }
 
     public void doneItem(Integer index) {
-        todoListRepository.updateItemToDone(index);
+        Item item = todoListRepository.findItemByIndex(index);
+        item.done();
+        todoListRepository.updateItemToDone(item);
+    }
+
+    public Item queryItemByIndex(Integer index) {
+        return todoListRepository.findItemByIndex(index);
     }
 
     public List<Item> listUnDoneItems() {
-        return todoListRepository.findUnDoneItems();
+        return Collections.unmodifiableList(todoListRepository.findUnDoneItems());
     }
 
     public List<Item> listAllItems() {
-        return todoListRepository.findAllItems();
+        return Collections.unmodifiableList(todoListRepository.findAllItems());
     }
 }

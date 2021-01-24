@@ -18,7 +18,7 @@ public final class ItemIndexFactory {
         return itemIndexFactory;
     }
 
-    public Integer index() {
+    public Integer nextIndex() {
         return currentIndex + 1;
     }
 

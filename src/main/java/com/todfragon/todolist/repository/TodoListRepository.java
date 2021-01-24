@@ -14,7 +14,7 @@ public interface TodoListRepository {
      *
      * @param item 待办项
      */
-    void saveItem(Item item);
+    void save(Item item);
 
     /**
      * 查询待办项根据待办index
@@ -41,9 +41,9 @@ public interface TodoListRepository {
     /**
      * 修改待办项为完成
      *
-     * @param index 待办index
+     * @param item 待办项
      */
-    void updateItemToDone(int index);
+    void updateItemToDone(Item item);
 
     /**
      * 总数
@@ -51,4 +51,9 @@ public interface TodoListRepository {
      * @return 总数
      */
     Integer count();
+
+    /**
+     * 删除所有
+     */
+    void deleteAll();
 }

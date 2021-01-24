@@ -18,6 +18,8 @@ public class DoneItemCommandTest extends AbstractCommandTest {
     @Test
     public void should_show_done_item() {
         DoneItemCommand doneItemCommand = new DoneItemCommand(getTodoListService());
+
+        getTodoListService().addItem("item1");
         doneItemCommand.execute(CommandContext.create(Args.create("todo done 1")));
         assertThat(systemOutRule.getLogWithNormalizedLineSeparator(), Is.is("Item 1 done\n"));
     }

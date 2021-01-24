@@ -7,7 +7,7 @@ import com.todfragon.todolist.cli.command.Command;
 import com.todfragon.todolist.cli.command.add.AddItemCommand;
 import com.todfragon.todolist.cli.command.done.DoneItemCommand;
 import com.todfragon.todolist.cli.command.list.ListItemCommand;
-import com.todfragon.todolist.repository.MemoryTodoRepository;
+import com.todfragon.todolist.repository.local.TodoListFileRepository;
 import com.todfragon.todolist.service.TodoListService;
 
 /**
@@ -18,7 +18,7 @@ import com.todfragon.todolist.service.TodoListService;
 final class CommandFactory {
 
     static List<Command> create() {
-        TodoListService todoListService = new TodoListService(new MemoryTodoRepository());
+        TodoListService todoListService = new TodoListService(new TodoListFileRepository());
 
         return ImmutableList.of(new AddItemCommand(todoListService),
                 new DoneItemCommand(todoListService), new ListItemCommand(todoListService));

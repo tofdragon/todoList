@@ -3,6 +3,7 @@ package com.todfragon.todolist.cli;
 import java.util.Scanner;
 
 import com.todfragon.todolist.cli.command.facade.CommandFacade;
+import com.todfragon.todolist.cli.command.facade.Output;
 
 /**
  * 待办Cli
@@ -13,10 +14,13 @@ public final class TodoListCli {
 
     private final CommandFacade commandFacade = new CommandFacade();
 
+    private final Output output = new Output();
+
     /**
      * 运行
      */
     public void run() {
+        outputTip();
         Scanner in = new Scanner(System.in);
         while (in.hasNext()) {
             String input = in.nextLine();
@@ -29,12 +33,21 @@ public final class TodoListCli {
             commandFacade.handle(input);
         } catch (Exception e) {
             formatErrorOutput(e);
+        } finally {
+            beautifyOutput();
         }
     }
 
+    private void outputTip() {
+        output.infoLn("please input your command");
+    }
+
     private void formatErrorOutput(Exception e) {
-        System.err.println("The input command is incorrect, please re-enter");
-        System.err.println(e.toString());
-        System.err.println();
+        output.errorLn("The input command is incorrect, please re-enter");
+        output.errorLn(e.toString());
+    }
+
+    private void beautifyOutput() {
+        output.errorLn("");
     }
 }

@@ -3,10 +3,12 @@ package com.tofdragon.todolist.service;
 import java.util.List;
 
 import org.hamcrest.core.Is;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import com.todfragon.todolist.domain.Item;
-import com.todfragon.todolist.repository.MemoryTodoRepository;
+import com.todfragon.todolist.repository.TodoListRepository;
+import com.todfragon.todolist.repository.local.TodoListFileRepository;
 import com.todfragon.todolist.service.TodoListService;
 
 import static org.junit.Assert.assertThat;
@@ -20,9 +22,19 @@ public class TodoListServiceTest {
 
     private TodoListService todoListService;
 
+    private TodoListRepository todoListRepository;
+
     @Before
     public void before() {
-        todoListService = new TodoListService(new MemoryTodoRepository());
+        todoListRepository = new TodoListFileRepository();
+        todoListService = new TodoListService(todoListRepository);
+
+        todoListRepository.deleteAll();
+    }
+
+    @After
+    public void after() {
+        todoListRepository.deleteAll();
     }
 
     @Test
@@ -46,7 +58,7 @@ public class TodoListServiceTest {
         assertThat(itemCreated.isUnDone(), Is.is(true));
 
         todoListService.doneItem(1);
-        assertThat(itemCreated.isDone(), Is.is(true));
+        assertThat(todoListService.queryItemByIndex(1).isDone(), Is.is(true));
     }
 
     @Test
